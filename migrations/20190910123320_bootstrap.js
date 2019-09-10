@@ -10,7 +10,8 @@ exports.up = function(knex) {
     tbl.string('model').notNullable();
     tbl.integer('mileage');
     tbl.string('transmission_type');
-    tbl.boolean('clean', 'salvage');
+    tbl.boolean('clean');
+    tbl.boolean('salvage');
   })
 };
 
