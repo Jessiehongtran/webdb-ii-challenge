@@ -56,12 +56,13 @@ server.put('/cars/:id', (req,res) => {
     const changes = req.body;
 
     db('cars')
-        .update(id, changes)
+        .where('id',id)
+        .update(changes)
         .then(car => {
                 res.status(200).json({ message: "Car updated" });
             })
         .catch(err => {
-                console.log(err);
+                console.log('put error',err);
                 res.status(500).json({message: 'Failed to update a car'})
             })
 
@@ -69,28 +70,19 @@ server.put('/cars/:id', (req,res) => {
 
 
 //DELETE A CAR
-server.delete('/car/:id', (req,res) =>{
+server.delete('/cars/:id', (req,res) =>{
     db('cars')
-        .remove(req.params.id)
+        .where('id',req.params.id)
+        .del(req.params.id)
         .then(car => {
                 res.status(200).json({ message: "Car deleted" });
               })
         .catch(err => {
+                console.log('delete error', err);
                 res.status(500).json({message: 'Failed to delete a car'})
             })
         
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = server;
