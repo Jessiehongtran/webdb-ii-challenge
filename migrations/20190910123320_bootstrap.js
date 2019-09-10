@@ -5,8 +5,9 @@ exports.up = function(knex) {
     // They also track transmission type and status of the title (clean, salvage, etc.), 
     // but this information is not always immediately known.
     tbl.increments();
-    tbl.string('VIN', 'make', 'model', 'mileage').notNullable();
-    tbl.string('transmission type')
+    tbl.string('VIN', 'make', 'model').notNullable();
+    tbl.integer('mileage')
+    tbl.string('transmission_type')
     tbl.boolean('clean', 'salvage')
   })
 };
